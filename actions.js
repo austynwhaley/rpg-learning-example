@@ -40,11 +40,18 @@ const attack = (character) => {
  * Rest sub-routine
  */
 const rest = (character) => {
-    character.gold -= 50;
+ //added if statement if player doesnt have gold
+    if (character.gold <= 0) {
+        character.profession.health += 5;
+        console.log('You have no gold for food!')
+        console.log(`You now have ${character.profession.health} health and ${character.gold} gold.`);
+    } else{
+        character.gold -= 50;
     character.profession.health += 25;
 
     console.log("You have gained 25 health for 10 gold.");
     console.log(`You now have ${character.profession.health} health and ${character.gold} gold.`);
+    }
 
     return character;
 }
@@ -70,6 +77,13 @@ const printStats = (character) => {
     recursivePrint(character);
 
     return character;
+}
+
+
+// go to tavern action that returns a random event that is positive or negative to players stats
+const tavern = (character) => {
+
+
 }
 
 module.exports = {
